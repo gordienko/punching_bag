@@ -3,13 +3,14 @@ module PunchingBag
   require 'punching_bag/acts_as_punchable'
   require 'voight_kampff'
 
-  def self.punch(punchable, request = nil, count = 1)
+  def self.punch(punchable, request = nil, count = 1, scope = nil)
     if request.try(:bot?)
       false
     else
       p = Punch.new
       p.punchable = punchable
       p.hits = count
+      p.scope = scope
       p.save ? p : false
     end
   end

@@ -12,6 +12,7 @@ ActiveRecord::Schema.define do
     t.datetime :ends_at,        null: false
     t.datetime :average_time,   null: false
     t.integer  :hits,           null: false, default: 1
+    t.string  :scope,           null: true, default: nil
   end
 
   add_index :punches, [:average_time], name: 'index_punches_on_average_time'

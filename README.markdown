@@ -40,7 +40,7 @@ __Tracking hits in your controller__
 
     class PostsController < ApplicationController
       def show
-        @post.punch(request)
+        @post.punch(request, scope: :get_contact)
       end
     end
 
@@ -48,9 +48,9 @@ __Getting a total hit count in your view__
 
     @post.hits
 
-__Getting a hit count for a time period in your view__
+__Getting a hit count for a time period and scope in your view__
 
-    @post.hits(1.week.ago)
+    @post.hits(since: 1.week.ago, scope: :get_contacts)
 
 __Getting a list of the five all-time most hit posts__
 

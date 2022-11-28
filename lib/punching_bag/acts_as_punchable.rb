@@ -40,13 +40,14 @@ module PunchingBag
     end
 
     module InstanceMethods
-      def hits(since = nil)
-        punches.after(since).sum(:hits)
+      def hits(since: nil, scope: nil)
+        punches.where(scope: scope).after(since).sum(:hits)
       end
 
       def punch(request = nil, options = {})
         count = options[:count] || 1
-        PunchingBag.punch(self, request, count)
+        scope = options[:scope]
+        PunchingBag.punch(self, request, count, scope)
       end
     end
   end

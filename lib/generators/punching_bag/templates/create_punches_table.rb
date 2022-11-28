@@ -6,9 +6,10 @@ class CreatePunchesTable < ActiveRecord::Migration[4.2]
       t.datetime :starts_at, :null => false
       t.datetime :ends_at, :null => false
       t.datetime :average_time, :null => false
-      t.integer :hits, :null => false, :default=>1
+      t.integer :hits, :null => false, :default => 1
+      t.string :scope, :null => true, :default => nil
     end
-    add_index :punches, [:punchable_type, :punchable_id], :name => :punchable_index, :unique => false
+    add_index :punches, [:punchable_type, :punchable_id, :scope], :name => :punchable_index, :unique => false
     add_index :punches, :average_time, :unique => false
   end
 
