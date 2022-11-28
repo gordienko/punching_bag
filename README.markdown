@@ -22,7 +22,7 @@ Installation
 
 __In your Gemfile add:__
 
-    gem "punching_bag"
+    gem 'punching_bag', github: 'gordienko/punching_bag'
 
 __In the terminal run:__
 
@@ -36,7 +36,7 @@ __In your model add:__
 
 Usage
 =====
-__Tracking hits in your controller__
+__Tracking hits with scope get_contact in your controller__
 
     class PostsController < ApplicationController
       def show
@@ -50,15 +50,15 @@ __Getting a total hit count in your view__
 
 __Getting a hit count for a time period and scope in your view__
 
-    @post.hits(since: 1.week.ago, scope: :get_contacts)
+    @post.hits(since: 1.week.ago, scope: :get_contact)
 
 __Getting a list of the five all-time most hit posts__
 
     Post.most_hit
 
-__Getting a list of the 10 most hit posts for the last 24 hours__
+__Getting a list of the 10 most hit posts with scope get_contact for the last 24 hours__
 
-    Post.most_hit(1.day.ago, 10)  # limit is 5 by default, pass nil for no limits
+    Post.most_hit(1.day.ago, 10, :get_contact) # limit is 5 by default, pass nil for no limits
 
 __Sorting posts based on all time hit count__
 

@@ -12,6 +12,7 @@ require 'rspec/its'
 
 require 'active_support/time'
 require 'ostruct'
+require 'pry'
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true

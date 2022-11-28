@@ -8,9 +8,10 @@ module PunchingBag
       DEFAULT_DIRECTION = :desc
 
       # Note: this method will only return items if they have 1 or more hits
-      def most_hit(since = nil, limit = 5)
+      def most_hit(since = nil, limit = 5, scope = nil)
         query = joins(:punches).group(Punch.arel_table[:punchable_type], Punch.arel_table[:punchable_id], arel_table[primary_key])
         query = query.where('punches.average_time >= ?', since) unless since.nil?
+        query = query.where('punches.scope': scope)
         query.reorder(Arel.sql('SUM(punches.hits) DESC')).limit(limit)
       end
 
